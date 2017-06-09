@@ -13,6 +13,10 @@ function getLowercase(t) {
 function isSpongeWord(word) {
   if (word.length < 3)
     return false;
+  if (word.length > 30)
+    return false;
+  if (word.startsWith("http"))
+    return false;
   var subs = word.substring(1, word.length-1);
   var upc = getUppercase(subs);
   var lwc = getLowercase(subs);
