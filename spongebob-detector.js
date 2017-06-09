@@ -11,6 +11,7 @@ function getLowercase(t) {
 }
 
 function isSpongeWord(word) {
+  word = word.replace( /[^a-zA-Z]/g, "");
   if (word.length < 3)
     return false;
   if (word.length > 30)
@@ -45,3 +46,5 @@ function isSpongebobText(text) {
 module.exports = {
   isSpongebobText : isSpongebobText
 };
+
+//console.log(isSpongebobText(""));

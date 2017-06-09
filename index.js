@@ -54,6 +54,7 @@ function operate(body, data) {
     pureText(body, function(err, file) {
       var text = String(file);
       if (detector.isSpongebobText(text) && conf.reddit.username != data.author) {
+        console.log("passed: <<<" + text + ">>>");
         tmp.tmpName(function(err, f) {
           draw.createImage(text, f, function() {
             imgur.upload(f, function(link) {
