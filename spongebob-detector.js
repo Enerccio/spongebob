@@ -16,8 +16,6 @@ function isSpongeWord(word) {
     return false;
   if (word.length > 30)
     return false;
-  if (word.startsWith("http"))
-    return false;
   var subs = word.substring(1, word.length-1);
   var upc = getUppercase(subs);
   var lwc = getLowercase(subs);
@@ -28,7 +26,9 @@ function isSpongeWord(word) {
 }
 
 function isSpongebobText(text) {
-  var segments = text.match(/[^-\r\n\t\f ]+/g);
+  if (text.contains("http"))
+    return false;
+  var segments = text.match(/[^-\r\n\t\f/ \(\)\[\]\{\}]+/g);
   if (segments === null || segments === undefined)
     return false;
   var cnt = 0;
