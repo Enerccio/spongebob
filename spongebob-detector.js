@@ -53,7 +53,7 @@ function isSpongebobText(text) {
     }
 
     if (cache.c.has(text)) {
-      console.log("duplicate");
+      console.log("duplicate [[" + text + "]]");
       return false;
     }
 
