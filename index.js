@@ -53,7 +53,7 @@ function operate(body, data) {
   if (body !== undefined) {
     pureText(body, function(err, file) {
       var text = String(file);
-      if (detector.isSpongebobText(text) && conf.reddit.username != data.author) {
+      if (detector.isSpongebobText(text) && conf.reddit.login.username !== data.author) {
         console.log("passed: <<<" + text + ">>>");
         tmp.tmpName(function(err, f) {
           draw.createImage(text, f, function() {
