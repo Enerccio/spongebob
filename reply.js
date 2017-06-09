@@ -13,6 +13,7 @@ var reddit = new snoo({
 });
 
 function reply(postId, text) {
+  text += "\n^(I am newborn bot and if I fuck up, please be kind 😞.) ^^(Source: https://github.com/Enerccio/spongebob)";
   reddit.getComment(postId).reply(text).catch(function (err) {
             console.log(err);
   });
