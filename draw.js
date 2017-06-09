@@ -36,8 +36,6 @@ function createImage(text, outputfile, cb) {
             l = null;
           }
 
-          console.log(tl);
-
           var dimensions = sizeReq(tl, src, 0x000000);
           lines.push({line: tl, dim: dimensions});
           w = Math.max(dimensions.w, w);
