@@ -28,7 +28,7 @@ function isSpongeWord(word) {
 }
 
 function isSpongebobText(text) {
-  var segments = text.match(/\S+/g);
+  var segments = text.match(/[^-\r\n\t\f ]+/g);
   if (segments === null || segments === undefined)
     return false;
   var cnt = 0;
