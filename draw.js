@@ -22,11 +22,27 @@ function createImage(text, outputfile, cb) {
   var lines = [];
 
   for (var i=0; i<tlines.length; i++) {
-      var dimensions = sizeReq(tlines[i], src, 0x000000);
-      lines.push({line: tlines[i], dim: dimensions});
+      var l = tlines[i];
 
-      w = Math.max(dimensions.w, w);
-      h += dimensions.h + 3;
+      while (l != null) {
+          var tl = l;
+          if (l.length > 50) {
+            tl = l.substring(0, 50);
+            l = l.replace(tl, "");
+            if (l.length == 0) {
+              l = null;
+            }
+          } else {
+            l = null;
+          }
+
+          console.log(tl);
+
+          var dimensions = sizeReq(tl, src, 0x000000);
+          lines.push({line: tl, dim: dimensions});
+          w = Math.max(dimensions.w, w);
+          h += dimensions.h + 3;
+      }
   }
 
   gd.createTrueColor(w, h, function(err, img) {
@@ -59,7 +75,7 @@ function createImage(text, outputfile, cb) {
 }
 
 //createImage("Hello, world", "/tmp/aaa.png", function() { console.log("ok"); })
-//createImage("Longer, text! AAA BBB CCC DDD EEE FFF\nGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGERGGGGOOOO", "/tmp/aab.png", function() { console.log("ok"); })
+//createImage("Longer, text! AAA BBB CCC DDD EEE FFF\nGGGGGGGGGGGGGGGGGGGGGGGSDASDASDASDASDASDASDASDASDASGGGGGGGGGGGERGGGGOOOO", "/tmp/aab.png", function() { console.log("ok"); })
 
 module.exports = {
   createImage : createImage
