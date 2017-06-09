@@ -2,6 +2,10 @@
 
 var conf = require("./conf");
 
+var StringSet = require("stringset");
+
+var cache = { c : new StringSet() };
+
 function getUppercase(t) {
   return t.replace(/[^A-Z]/g, "").length;
 }
@@ -28,6 +32,18 @@ function isSpongeWord(word) {
 function isSpongebobText(text) {
   if (text.includes("http"))
     return false;
+
+  if (cache.c.size() > 100000) {
+    cache.c = new StringSet();
+  }
+
+  if (cache.c.has(text)) {
+    console.log("duplicate");
+    return false;
+  }
+
+  cache.c.add(text);
+
   var segments = text.match(/[^-\r\n\t\f/ \(\)\[\]\{\}]+/g);
   if (segments === null || segments === undefined)
     return false;
