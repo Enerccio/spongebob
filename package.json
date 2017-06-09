@@ -1,0 +1,20 @@
+{
+  "name": "spongebob-meme-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "Enerccio",
+  "license": "WTFPL",
+  "dependencies": {
+    "imgur-node-api": "^0.1.0",
+    "node-gd": "^1.5.0",
+    "reddit-stream": "^1.2.0",
+    "remark": "^7.0.1",
+    "request": "^2.81.0",
+    "snoowrap": "^1.14.0",
+    "strip-markdown": "^3.0.0",
+    "textversionjs": "^1.0.2",
+    "tmp": "0.0.31",
+    "unescape": "^1.0.1"
+  }
+}
