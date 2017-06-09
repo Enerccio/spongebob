@@ -33,17 +33,6 @@ function isSpongebobText(text) {
   if (text.includes("http"))
     return false;
 
-  if (cache.c.size() > 100000) {
-    cache.c = new StringSet();
-  }
-
-  if (cache.c.has(text)) {
-    console.log("duplicate");
-    return false;
-  }
-
-  cache.c.add(text);
-
   var segments = text.match(/[^-\r\n\t\f/ \(\)\[\]\{\}]+/g);
   if (segments === null || segments === undefined)
     return false;
@@ -55,8 +44,23 @@ function isSpongebobText(text) {
       sponged += 1;
     }
   }
-  return ((1.0/cnt)*sponged) >= conf.reddit.detector.min_num_words_threshold &&
+  var test = ((1.0/cnt)*sponged) >= conf.reddit.detector.min_num_words_threshold &&
     cnt >= conf.reddit.detector.min_num_words_count;
+
+  if (test) {
+    if (cache.c.size() > 100000) {
+      cache.c = new StringSet();
+    }
+
+    if (cache.c.has(text)) {
+      console.log("duplicate");
+      return false;
+    }
+
+    cache.c.add(text);
+    return true;
+  }
+  return false;
 }
 
 module.exports = {
